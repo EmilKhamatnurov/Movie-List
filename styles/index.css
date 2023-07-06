@@ -1,0 +1,170 @@
+body {
+	background-color: #181818;
+}
+
+.container {
+	max-width: 930px;
+	margin: 0 auto;
+	margin-top: 80px;
+}
+
+.header {
+	padding: 0 70px;
+}
+
+.title {
+	display: inline;
+	padding: 5px 23px;
+	font-size: 15px;
+	line-height: 17px;
+	background: #6532F8;
+	border: 1px solid #6532F8;
+	border-radius: 200px;
+}
+
+.year {
+	display: inline;
+	padding: 5px 23px;
+	font-size: 15px;
+	line-height: 17px;
+	background: #6532F8;
+	border: 1px solid #6532F8;
+	border-radius: 200px;
+}
+
+.label {
+	margin-top: 10px;
+	margin-bottom: 25px;
+	font-size: 120.416px;
+	line-height: 138px;
+}
+
+.movie-list-wrapper {
+	padding: 60px 70px;
+	background: #232323;
+	border-radius: 20px;
+}
+
+/*Убрать полосу прокрутки у элемента*/
+
+.input-wrapper {
+	display: flex;
+	align-items: end;
+	margin-bottom: 40px;
+}
+
+.movie-input {
+	font-size: 30px;
+	line-height: 55px;
+	color: #F3F6F9;
+	max-width: 411px;
+	width: 100%;
+	border-bottom: 1px solid #F3F6F9;
+	margin-right: 20px;
+}
+
+.new-movie-btn {
+	background: #6532F8;
+	padding: 15px;
+	border-radius: 30px;
+}
+
+.movie-list {
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	flex-direction: column;
+	gap: 3px;
+	max-height: 359px;
+	overflow: scroll;
+}
+
+.movie-list::-webkit-scrollbar {
+	width: 0;
+}
+
+.movie {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	padding: 29px 20px;
+	background: #3A3939;
+	border-radius: 10px;
+	width: 100%;
+}
+
+.movie:hover {
+	transition: background 0.2s;
+	background: #6432f86e;
+}
+
+.movie__name-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+
+.checkbox {
+	display: none;
+}
+
+label {
+	display: flex;
+	align-items: center;
+}
+
+@media (max-width: 758px) {
+	.container {
+		/* max-width: 930px; */
+		max-width: 100%;
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 40px;
+		padding: 0 5px;
+	}
+
+	.header {
+		padding: 0 30px;
+	}
+
+	.label {
+		margin-top: 10px;
+		margin-bottom: 25px;
+		font-size: 60px;
+		line-height: 78px;
+	}
+
+	.input-wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		margin-bottom: 30px;
+	}
+
+	.movie-input {
+		font-size: 23px;
+		line-height: 36px;
+		margin-right: 10px;
+		max-width: 100%;
+	}
+
+	.movie-list-wrapper {
+		padding: 10px 10px;
+		background: #232323;
+		border-radius: 20px;
+	}
+
+	.movie-list {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+		flex-direction: column;
+		width: 100%;
+		gap: 3px;
+	}
+
+	.movie__label {
+		max-width: 80%;
+	}
+}
