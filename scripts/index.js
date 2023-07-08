@@ -78,8 +78,8 @@ const renderMovieList = (movie_list) => {
 				<input type="checkbox" id="check_${index}" class="check-btn" name="check_${index}" >
 				<label class="movie-label" for="check_${index}">${movie.name}</label>
 			</div>
-			<button data-movie="${index}" class="movie-delete-btn">
-				<img src="../resources/delete-movie-btn-image.svg" alt="кнопка удаления фильма">
+			<button" class="movie-delete-btn">
+				<img data-movie="${index}" src="../resources/delete-movie-btn-image.svg" alt="кнопка удаления фильма">
 			</button>
 		</div>`;
 	});
@@ -87,7 +87,6 @@ const renderMovieList = (movie_list) => {
 		movieListNode.innerHTML = 'Фильмов нет, так что иди работай...' : 
 		movieListNode.innerHTML = movieMarkup;
 };
-
 
 function Movie(name, date, status){
 	this.name = name;
@@ -108,6 +107,14 @@ const getCurrentDate = () => {
 		second: 'numeric'});
 };
 
+// Удаление фильма
+
+const deleteMovie = (movie_index) => {
+	movies.splice(movie_index,1);
+	saveMoviesToLocal(movies);
+	renderMovieList(movies);
+};
+
 // загружаем траты в помять браузера через LocalStorage
 
 const clearMovieInput = () => movieInputNode.value = '';
@@ -118,3 +125,7 @@ const renderError = (message_error) => console.error(`${message_error}`);
 init()
 // ОТРАБОТЧИК 
 newMovieButtonNode.addEventListener('click', addMovie);
+
+movieListNode.addEventListener('click', function(e){
+	(e.target.tagName === 'IMG') ? deleteMovie(e.target.movie) : ""
+});
