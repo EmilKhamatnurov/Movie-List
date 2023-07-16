@@ -14,11 +14,11 @@ const movieInputNode = document.querySelector('#movieInput');
 const newMovieButtonNode = document.querySelector('#newMovieButton');
 // Ссылка на HTML-элемент, в который выводится список фильмов
 const movieListNode = document.querySelector('#movieList');
-// ?
+// Содержимое LocalStorage  в формате строки
 const moviesFormStorageString = localStorage.getItem(STORAGE_LABEL_MOVIES);
-// ?
+// Преобразование строки в формат JSON для работы с данными
 const moviesFormStorage = JSON.parse(moviesFormStorageString);
-// ?
+// Ссылка на элемент, в котором выводятся ошибки 
 const errorOutputNode = document.querySelector('#errorOutput');
 
 // Массив объектов фильмов 
@@ -27,7 +27,7 @@ let movies = [];
 if(Array.isArray(moviesFormStorage)) {
 	movies = moviesFormStorage;
 }
-
+// 
 const init = () => renderMovieList(movies);
 
 const addMovie = () => {
@@ -40,7 +40,7 @@ const addMovie = () => {
 	clearMovieInput();
 	switchFocusToMovieInput();
 };
-
+// Проверка значения поля ввода 
 const checkInput = () => {
 	if(!movieInputNode.value.trim()) {
 		renderError("Неправильно заполненное поле");
@@ -48,21 +48,21 @@ const checkInput = () => {
 	}
 	return true;
 };
-
+// Добавление нового фильма в начало списка
 const addToMovieList = () => {
 	const newMovie = getMovieFromUser();
     movies.unshift(newMovie);
 };
-
+// Сохранение массива фильмов в Local Storage
 function saveMoviesToLocal(movies) {
 	const moviesString = JSON.stringify(movies);
 	localStorage.setItem(STORAGE_LABEL_MOVIES, moviesString);
 };
-
+// Получение фильма из поля ввода, сразу возвращается объект фильма
 const getMovieFromUser = () => { 
     return new Movie(movieInputNode.value, getCurrentDate(), STATUS.not_viewed);
 };
-
+// Отображение списка фильмов
 const renderMovieList = (movie_list) => {
 	let movieMarkup = '';
 	movie_list.forEach((movie, index) => {
@@ -85,13 +85,13 @@ const renderMovieList = (movie_list) => {
 		movieListNode.innerHTML = 'Фильмов нет, так что иди работай...' : 
 		movieListNode.innerHTML = movieMarkup;
 };
-
+// Конструктор объекта Movie
 function Movie(name, date, status){
 	this.name = name;
 	this.date = date;
 	this.status = status;
 };
-
+// Генерация текущей даты
 const getCurrentDate = () => {
     const date = new Date();
     return date.toLocaleString('ru-RU', {
