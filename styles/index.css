@@ -77,9 +77,9 @@ body {
 	overflow: scroll;
 }
 
-.movie-list::-webkit-scrollbar {
-	width: 0;
-}
+/* .movie-list::-webkit-scrollbar {
+	width: 10px;
+} */
 
 /* Элемент Фильм */
 .movie {
@@ -111,10 +111,229 @@ body {
 	cursor: pointer;
 }
 
-/* Стиль перечеркивания */
-.check-btn:checked+.movie-label {
-	text-decoration: line-through;
+/* checkbox */
+
+.movie {
+	--background: #303952;
+	--text: #5d6474;
+	--check: #cc29f0;
+	--disabled: #d3c8de;
+	--width: 100%;
+	--height: 180px;
+	--border-radius: 10px;
+	padding: 28px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	background: var(--background);
+	width: var(--width);
+	height: var(--height);
+	border-radius: var(--border-radius);
+	position: relative;
+	box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
 }
+
+.movie label {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -0.4px;
+	word-break: break-all;
+	margin-left: 10px;
+	color: var(--text);
+	position: relative;
+	cursor: pointer;
+	transition: color 0.3s ease;
+}
+
+.movie label::before,
+.movie label::after {
+	content: "";
+	position: absolute;
+}
+
+.movie label::before {
+	height: 2px;
+	width: 8px;
+	top: 10px;
+	left: -27px;
+	background: var(--check);
+	border-radius: 2px;
+	transition: background 0.3s ease;
+}
+
+.movie label:after {
+	height: 4px;
+	width: 4px;
+	top: 8px;
+	left: -23px;
+	border-radius: 50%;
+}
+
+.movie input[type="checkbox"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	position: relative;
+	height: 15px;
+	width: 15px;
+	outline: none;
+	border: 0;
+	margin: 0 15px 0 0;
+	cursor: pointer;
+	background: var(--background);
+	/* display: grid;
+	align-items: center;
+	margin-right: 20px; */
+}
+
+.movie input[type="checkbox"]::before,
+.movie input[type="checkbox"]::after {
+	content: "";
+	position: absolute;
+	height: 2px;
+	top: auto;
+	background: var(--check);
+	border-radius: 2px;
+}
+
+.movie input[type="checkbox"]::before {
+	width: 0px;
+	right: 60%;
+	top: 8px;
+	left: 20px;
+	transform-origin: right bottom;
+}
+
+.movie input[type="checkbox"]::after {
+	width: 0px;
+	left: 40%;
+	top: 8px;
+	left: 25px;
+	transform-origin: left bottom;
+}
+
+.movie input[type="checkbox"]:checked::before {
+	animation: check-01 0.4s ease forwards;
+}
+
+.movie input[type="checkbox"]:checked::after {
+	animation: check-02 0.4s ease forwards;
+}
+
+.movie input[type="checkbox"]:checked+label {
+	color: var(--disabled);
+	animation: move 0.3s ease 0.1s forwards;
+}
+
+.movie input[type="checkbox"]:checked+label::before {
+	background: var(--disabled);
+	animation: slice 0.4s ease forwards;
+}
+
+.movie input[type="checkbox"]:checked+label::after {
+	animation: firework 0.5s ease forwards 0.1s;
+}
+
+@keyframes move {
+	50% {
+		padding-left: 8px;
+		padding-right: 0px;
+	}
+
+	100% {
+		padding-right: 4px;
+	}
+}
+
+@keyframes slice {
+	60% {
+		width: 100%;
+		left: 4px;
+	}
+
+	100% {
+		width: 100%;
+		left: -2px;
+		padding-left: 0;
+	}
+}
+
+@keyframes check-01 {
+	0% {
+		width: 4px;
+		top: auto;
+		transform: rotate(0);
+	}
+
+	50% {
+		width: 0px;
+		top: auto;
+		transform: rotate(0);
+	}
+
+	51% {
+		width: 0px;
+		top: 8px;
+		transform: rotate(45deg);
+	}
+
+	100% {
+		width: 5px;
+		top: 8px;
+		transform: rotate(45deg);
+	}
+}
+
+@keyframes check-02 {
+	0% {
+		width: 4px;
+		top: auto;
+		transform: rotate(0);
+	}
+
+	50% {
+		width: 0px;
+		top: auto;
+		transform: rotate(0);
+	}
+
+	51% {
+		width: 0px;
+		top: 8px;
+		transform: rotate(-45deg);
+	}
+
+	100% {
+		width: 10px;
+		top: 8px;
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes firework {
+	0% {
+		opacity: 1;
+		box-shadow: 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0;
+	}
+
+	30% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		box-shadow: 0 -15px 0 0px #4f29f0, 14px -8px 0 0px #4f29f0, 14px 8px 0 0px #4f29f0, 0 15px 0 0px #4f29f0, -14px 8px 0 0px #4f29f0, -14px -8px 0 0px #4f29f0;
+	}
+}
+
+/* checkbox */
+
+
+/* Стиль перечеркивания */
+/* .check-btn:checked+.movie-label {
+	text-decoration: line-through;
+} */
 
 @media (max-width: 758px) {
 	.container {
