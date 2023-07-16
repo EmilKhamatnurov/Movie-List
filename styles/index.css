@@ -111,13 +111,13 @@ body {
 	cursor: pointer;
 }
 
-/* checkbox */
+/* checkbox, стили, адаптированные под сайт */
 
 .movie {
 	--background: #303952;
-	--text: #5d6474;
+	--text: #ffffff;
 	--check: #cc29f0;
-	--disabled: #d3c8de;
+	--disabled: #87808e;
 	--width: 100%;
 	--height: 180px;
 	--border-radius: 10px;
@@ -128,7 +128,6 @@ body {
 	gap: 10px;
 	background: var(--background);
 	width: var(--width);
-	height: var(--height);
 	border-radius: var(--border-radius);
 	position: relative;
 	box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
@@ -182,9 +181,6 @@ body {
 	margin: 0 15px 0 0;
 	cursor: pointer;
 	background: var(--background);
-	/* display: grid;
-	align-items: center;
-	margin-right: 20px; */
 }
 
 .movie input[type="checkbox"]::before,
@@ -223,6 +219,8 @@ body {
 
 .movie input[type="checkbox"]:checked+label {
 	color: var(--disabled);
+	text-decoration: line-through;
+	transition: text-decoration 0.3s;
 	animation: move 0.3s ease 0.1s forwards;
 }
 
@@ -248,12 +246,12 @@ body {
 
 @keyframes slice {
 	60% {
-		width: 100%;
+		width: 0%;
 		left: 4px;
 	}
 
 	100% {
-		width: 100%;
+		width: 0%;
 		left: -2px;
 		padding-left: 0;
 	}

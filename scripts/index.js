@@ -78,7 +78,7 @@ const renderMovieList = (movie_list) => {
 				<label class="movie-label" for="check_${index}">${movie.name}</label>
 			</div>
 			<button" class="movie-delete-btn">
-				<img data-movie="${index}" src="../resources/delete-movie-btn-image.svg" alt="кнопка удаления фильма">
+				<img data-movie="${index}" src="resources/delete-movie-btn-image.svg" alt="кнопка удаления фильма">
 			</button>
 		</div>`;
 	});
