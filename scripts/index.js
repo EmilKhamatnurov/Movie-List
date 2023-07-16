@@ -3,13 +3,13 @@
 const STORAGE_LABEL_MOVIES = 'movies';
 // Статус просмотра фильма. Просмотрен - checked , не просмотрен - unchecked
 const STATUS = {
-    viewed: 'viewed',
-    not_viewed: 'not_viewed',
+    viewed: 'checked',
+    not_viewed: 'unchecked',
 };
-const CLASSES_BY_STATUS = {
-	[STATUS.viewed] : 'checked',
-	[STATUS.not_viewed] : 'unchecked',
-}
+// const CLASSES_BY_STATUS = {
+// 	[STATUS.viewed] : 'checked',
+// 	[STATUS.not_viewed] : 'unchecked',
+// }
 // ЭЛЕМЕНТЫ
 // Ссылка на поле ввода фильмов 
 const movieInputNode = document.querySelector('#movieInput');
@@ -72,10 +72,10 @@ const renderMovieList = (movie_list) => {
 			return
 		}
 		movieMarkup += `    
-		<div class="movie" data-check="check_${index}">
+		<div class="movie" >
 			<div>
-				<input type="checkbox" id="check_${index}" class="check-btn" name="check_${index}" >
-				<label class="movie-label" for="check_${index}">${movie.name}</label>
+				<input type="checkbox" id="check_${index}" class="check-btn" data-check="${index}" name="check_${index}" ${movie.status}>
+				<label class="movie-label" for="check_${index}" data-check="${index}">${movie.name}</label>
 			</div>
 			<button" class="movie-delete-btn">
 				<img data-movie="${index}" src="resources/delete-movie-btn-image.svg" alt="кнопка удаления фильма">
@@ -113,6 +113,14 @@ const deleteMovie = (movie_index) => {
 	renderMovieList(movies);
 };
 
+//Функция обновления статуса фильма и рендера
+const changeMovieViewStatus = (movie_index) => {
+	(movies[movie_index].status === STATUS.viewed) ? 
+		movies[movie_index].status = STATUS.not_viewed : 
+		movies[movie_index].status = STATUS.viewed
+	renderMovieList(movies);
+}
+
 // загружаем траты в помять браузера через LocalStorage
 const clearMovieInput = () => movieInputNode.value = '';
 const switchFocusToMovieInput = () => movieInputNode.focus();
@@ -125,6 +133,6 @@ newMovieButtonNode.addEventListener('click', addMovie);
 
 movieListNode.addEventListener('click', function(e){
 	(e.target.tagName === 'IMG') ? deleteMovie(e.target.movie) : "";
-	(e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') ? "" : ""
+	(e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') ? changeMovieViewStatus(e.target.dataset.check) : ""
 });
-
+// 
