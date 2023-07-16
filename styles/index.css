@@ -399,6 +399,14 @@ body {
 		max-width: 100%;
 	}
 
+	.error-output {
+		color: red;
+		font-size: 15px;
+		height: 20px;
+		opacity: 0;
+		margin-bottom: 10px;
+	}
+
 	.movie-list-wrapper {
 		padding: 10px 10px;
 		background: #232323;

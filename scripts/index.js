@@ -123,6 +123,7 @@ const changeMovieViewStatus = (movie_index) => {
 // загружаем траты в помять браузера через LocalStorage
 const clearMovieInput = () => movieInputNode.value = '';
 const switchFocusToMovieInput = () => movieInputNode.focus();
+
 // Рендер сообщения об ошибке
 const renderError = (message_error) => {
 	errorOutputNode.innerText =  `${message_error}`;
@@ -134,9 +135,11 @@ const renderError = (message_error) => {
 init()
 // ОТРАБОТЧИК 
 newMovieButtonNode.addEventListener('click', addMovie);
-
+movieInputNode.addEventListener('keypress', function (event) {
+	(event.keyCode == 13) ? addMovie() : "";
+});
 movieListNode.addEventListener('click', function(e){
-	(e.target.tagName === 'IMG') ? deleteMovie(e.target.movie) : "";
+	(e.target.tagName === 'IMG') ? deleteMovie(e.target.dataset.movie) : "";
 	(e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') ? changeMovieViewStatus(e.target.dataset.check) : ""
 });
 // 
