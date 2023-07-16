@@ -117,6 +117,7 @@ const changeMovieViewStatus = (movie_index) => {
 	(movies[movie_index].status === STATUS.viewed) ? 
 		movies[movie_index].status = STATUS.not_viewed : 
 		movies[movie_index].status = STATUS.viewed
+	saveMoviesToLocal(movies);
 	renderMovieList(movies);
 }
 
