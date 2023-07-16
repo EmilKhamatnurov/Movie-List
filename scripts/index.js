@@ -17,9 +17,9 @@ const movieInputNode = document.querySelector('#movieInput');
 const newMovieButtonNode = document.querySelector('#newMovieButton');
 // Ссылка на HTML-элемент, в который выводится список фильмов
 const movieListNode = document.querySelector('#movieList');
-
- 
+// ?
 const moviesFormStorageString = localStorage.getItem(STORAGE_LABEL_MOVIES);
+// ?
 const moviesFormStorage = JSON.parse(moviesFormStorageString);
 
 // Массив объектов фильмов 
@@ -30,7 +30,6 @@ if(Array.isArray(moviesFormStorage)) {
 }
 
 const init = () => renderMovieList(movies);
-
 
 const addMovie = () => {
 	if (!checkInput()) { 
@@ -73,7 +72,7 @@ const renderMovieList = (movie_list) => {
 			return
 		}
 		movieMarkup += `    
-		<div class="movie-wrapper">
+		<div class="movie" data-check="check_${index}">
 			<div>
 				<input type="checkbox" id="check_${index}" class="check-btn" name="check_${index}" >
 				<label class="movie-label" for="check_${index}">${movie.name}</label>
@@ -108,7 +107,6 @@ const getCurrentDate = () => {
 };
 
 // Удаление фильма
-
 const deleteMovie = (movie_index) => {
 	movies.splice(movie_index,1);
 	saveMoviesToLocal(movies);
@@ -116,7 +114,6 @@ const deleteMovie = (movie_index) => {
 };
 
 // загружаем траты в помять браузера через LocalStorage
-
 const clearMovieInput = () => movieInputNode.value = '';
 const switchFocusToMovieInput = () => movieInputNode.focus();
 // Рендер сообщения об ошибке
@@ -127,5 +124,7 @@ init()
 newMovieButtonNode.addEventListener('click', addMovie);
 
 movieListNode.addEventListener('click', function(e){
-	(e.target.tagName === 'IMG') ? deleteMovie(e.target.movie) : ""
+	(e.target.tagName === 'IMG') ? deleteMovie(e.target.movie) : "";
+	(e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') ? "" : ""
 });
+
