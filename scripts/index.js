@@ -6,10 +6,7 @@ const STATUS = {
     viewed: 'checked',
     not_viewed: 'unchecked',
 };
-// const CLASSES_BY_STATUS = {
-// 	[STATUS.viewed] : 'checked',
-// 	[STATUS.not_viewed] : 'unchecked',
-// }
+
 // ЭЛЕМЕНТЫ
 // Ссылка на поле ввода фильмов 
 const movieInputNode = document.querySelector('#movieInput');
@@ -21,6 +18,8 @@ const movieListNode = document.querySelector('#movieList');
 const moviesFormStorageString = localStorage.getItem(STORAGE_LABEL_MOVIES);
 // ?
 const moviesFormStorage = JSON.parse(moviesFormStorageString);
+// ?
+const errorOutputNode = document.querySelector('#errorOutput');
 
 // Массив объектов фильмов 
 let movies = [];
@@ -74,8 +73,8 @@ const renderMovieList = (movie_list) => {
 		movieMarkup += `    
 		<div class="movie" >
 			<div>
-				<input type="checkbox" id="check_${index}" class="check-btn" data-check="${index}" name="check_${index}" ${movie.status}>
-				<label class="movie-label" for="check_${index}" data-check="${index}">${movie.name}</label>
+				<input data-check="${index}" type="checkbox" id="check_${index}" class="check-btn" name="check_${index}" ${movie.status}>
+				<label data-check="${index}" class="movie-label" for="check_${index}">${movie.name}</label>
 			</div>
 			<button" class="movie-delete-btn">
 				<img data-movie="${index}" src="resources/delete-movie-btn-image.svg" alt="кнопка удаления фильма">
@@ -125,7 +124,12 @@ const changeMovieViewStatus = (movie_index) => {
 const clearMovieInput = () => movieInputNode.value = '';
 const switchFocusToMovieInput = () => movieInputNode.focus();
 // Рендер сообщения об ошибке
-const renderError = (message_error) => console.error(`${message_error}`);
+const renderError = (message_error) => {
+	errorOutputNode.innerText =  `${message_error}`;
+	errorOutputNode.classList.toggle('visible');
+	clearMovieInput();
+	switchFocusToMovieInput();
+} 
 
 init()
 // ОТРАБОТЧИК 
